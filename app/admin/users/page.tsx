@@ -36,6 +36,7 @@ async function UsersContent() {
                   ) : (
                     <span className="text-green-500">Active</span>
                   )}
+                  <p className="mt-1 text-muted">2FA {u.twoFactorEnabled ? "on" : "off"}</p>
                 </td>
                 <td className="px-4 py-3">
                   <UserActions
@@ -43,6 +44,7 @@ async function UsersContent() {
                     role={u.role ?? "author"}
                     banned={!!u.banned}
                     locked={u.role === "superadmin"}
+                    twoFactor={!!u.twoFactorEnabled}
                   />
                 </td>
               </tr>

@@ -3,22 +3,27 @@
 import { useTransition } from "react";
 import {
   removeUserAction,
+  resetTwoFactorAction,
   setRoleAction,
   toggleBanAction,
 } from "@/app/admin/users/actions";
 
 type Result = { ok: boolean; message: string };
 
+
+
 export function UserActions({
   id,
   role,
   banned,
   locked,
+  twoFactor,
 }: {
   id: string;
   role: string;
   banned: boolean;
   locked: boolean;
+  twoFactor: boolean;
 }) {
   const [pending, start] = useTransition();
 
@@ -52,6 +57,22 @@ export function UserActions({
       >
         {banned ? "Unban" : "Ban"}
       </button>
+
+      {twoFactor && (
+        <button
+          disabled={pending}
+          className={small}
+          onClick={() => {
+            if (confirm("Reset two-factor for this user?")) {
+              run(() => resetTwoFactorAction(id));
+            }
+          }}
+        >
+          Reset 2FA
+        </button>
+      )}
+
+
       <button
         disabled={pending}
         className={`${small} text-red-400`}

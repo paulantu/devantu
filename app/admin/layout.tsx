@@ -1,10 +1,17 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Admin",
+  robots: { index: false, follow: false },
+};
+
 import { Suspense } from "react";
 import { requireRole } from "@/lib/session";
 import { adminNav } from "@/lib/admin-nav";
 import { AdminSidebar } from "@/components/admin/sidebar";
 
 async function Shell({ children }: { children: React.ReactNode }) {
-  const { session, role } = await requireRole();
+  const { session, role } = await requireRole(undefined, { skipTwoFactor: true });
   const items = adminNav
     .filter((i) => i.roles.includes(role))
     .map(({ label, href, icon }) => ({ label, href, icon }));

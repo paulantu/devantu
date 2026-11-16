@@ -10,7 +10,7 @@ const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains", display: "swap" });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { general } = await getSiteSettings();
+  const { general, seo } = await getSiteSettings();
   return {
     metadataBase: new URL(siteConfig.url),
     title: {
@@ -18,6 +18,17 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${general.name}`,
     },
     description: general.description,
+    robots: seo.noindex ? { index: false, follow: false } : undefined,
+    alternates: {
+      canonical: "./",
+      types: { "application/rss+xml": "/rss.xml" },
+    },
+    openGraph: {
+      type: "website",
+      siteName: general.name,
+      images: [seo.ogImageUrl || "/og"],
+    },
+    twitter: { card: "summary_large_image" },
   };
 }
 

@@ -15,6 +15,97 @@
       "when": 1794431015898,
       "tag": "0001_acoustic_leader",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794511456420,
+      "tag": "0002_talented_magneto",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1794512646316,
+      "tag": "0003_overrated_klaw",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794521003224,
+      "tag": "0004_far_wolfpack",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794521574748,
+      "tag": "0005_lumpy_madame_masque",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794560100159,
+      "tag": "0006_amazing_roughhouse",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1794563319616,
+      "tag": "0007_little_nextwave",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794647475191,
+      "tag": "0008_condemned_human_torch",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1794686627293,
+      "tag": "0009_big_rage",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1794688289933,
+      "tag": "0010_acoustic_scrambler",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1794691343068,
+      "tag": "0011_fixed_mach_iv",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1794732731304,
+      "tag": "0012_yielding_otto_octavius",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1794763109052,
+      "tag": "0013_warm_old_lace",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1794769516680,
+      "tag": "0014_young_galactus",
+      "breakpoints": true
     }
   ]
 }

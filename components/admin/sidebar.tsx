@@ -8,14 +8,27 @@ import { Logo } from "@/components/site/logo";
 import { ThemeToggle } from "@/components/site/theme-toggle";
 import { SignOutButton } from "@/components/auth/sign-out-button";
 
-import { ExternalLink, LayoutDashboard, Menu, Settings, Users, X } from "lucide-react";
+
+import { Briefcase, ExternalLink, FileText, FolderKanban, Image as ImageIcon, Inbox, Layers, Images, MessageCircle, Mail, PenLine, LayoutDashboard, Menu, Settings, ShieldCheck, Tag, MessageSquare, Users, X } from "lucide-react";
 
 const icons: Record<string, React.ComponentType<{ className?: string }>> = {
   dashboard: LayoutDashboard,
   users: Users,
   settings: Settings,
+  media: ImageIcon,
+  sections: Layers,
+  security: ShieldCheck,
+  services: Briefcase,
+  projects: FolderKanban,
+  cv: FileText,
+  pricing: Tag,
+  quotes: Inbox,
+  messages: MessageSquare,
+  blog: PenLine,
+  comments: MessageCircle,
+  subscribers: Mail,
+  gallery: Images,
 };
-
 
 type Item = { label: string; href: string; icon: string };
 

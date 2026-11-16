@@ -91,12 +91,24 @@ export function Footer({
         )}
       </div>
 
-      <div className="border-t border-border py-5 text-center text-xs text-muted">
-        ©{" "}
-        <Suspense fallback="2026">
-          <Year />
-        </Suspense>{" "}
-        {general.name}. All rights reserved.
+      <div className="border-t border-border py-5 text-xs text-muted">
+        <div className="container-page flex flex-col items-center justify-between gap-2 sm:flex-row">
+          <p>
+            ©{" "}
+            <Suspense fallback="2026">
+              <Year />
+            </Suspense>{" "}
+            {general.name}. All rights reserved.
+          </p>
+          <p className="flex gap-4">
+            <Link href="/privacy" className="hover:text-primary">
+              Privacy
+            </Link>
+            <Link href="/terms" className="hover:text-primary">
+              Terms
+            </Link>
+          </p>
+        </div>
       </div>
     </footer>
   );

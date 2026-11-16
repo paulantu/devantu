@@ -9,7 +9,7 @@ import {
   type SettingKey,
   type SiteSettings,
 } from "@/lib/settings-schema";
-
+import { FieldInput } from "./field-input";
 const input =
   "w-full rounded-md border border-border bg-background px-3 py-2 text-sm";
 
@@ -104,6 +104,7 @@ const contactFields: { key: keyof SiteSettings["contact"]; label: string }[] = [
   { key: "calendly", label: "Calendly link (https://calendly.com/...)" },
   { key: "location", label: "City / address" },
   { key: "hours", label: "Working hours" },
+  { key: "mapLat", label: "Map latitude, or paste both numbers from Google Maps (23.8103, 90.4125)" },
 ];
 
 export function ContactCard({ initial }: { initial: SiteSettings["contact"] }) {
@@ -203,6 +204,97 @@ export function NavCard({ initial }: { initial: SiteSettings["nav"] }) {
       <Button variant="outline" size="sm" onClick={() => setList([...list, { label: "", href: "/", visible: true }])}>
         <Plus className="size-4" /> Add item
       </Button>
+    </Card>
+  );
+}
+
+
+
+export function BlogSettingsCard({ initial }: { initial: SiteSettings["blog"] }) {
+  const [v, setV] = useState(initial);
+  return (
+    <Card
+      title="Blog"
+      hint="Comments always wait for approval before they appear."
+      settingKey="blog"
+      data={v}
+    >
+      <label className="flex items-center gap-2 text-sm">
+        <input type="checkbox" className="size-4 accent-[var(--primary)]" checked={v.comments} onChange={(e) => setV({ ...v, comments: e.target.checked })} />
+        Allow comments on blog posts
+      </label>
+      <label className="flex items-center gap-2 text-sm">
+        <input type="checkbox" className="size-4 accent-[var(--primary)]" checked={v.newsletterBox} onChange={(e) => setV({ ...v, newsletterBox: e.target.checked })} />
+        Show a newsletter signup box under every post
+      </label>
+    </Card>
+  );
+}
+
+
+
+
+export function SeoCard({ initial }: { initial: SiteSettings["seo"] }) {
+  const [v, setV] = useState(initial);
+  return (
+    <Card
+      title="Search & sharing"
+      hint="How your site looks in Google and when a link is shared."
+      settingKey="seo"
+      data={v}
+    >
+      <FieldInput
+        field={{
+          name: "ogImageUrl",
+          label: "Default share image (1200 x 630 works best). Leave empty for an automatic one.",
+          kind: "image",
+        }}
+        value={v.ogImageUrl}
+        onChange={(x) => setV({ ...v, ogImageUrl: String(x) })}
+      />
+      <label className="flex items-center gap-2 text-sm">
+        <input type="checkbox" className="size-4 accent-[var(--primary)]" checked={v.noindex} onChange={(e) => setV({ ...v, noindex: e.target.checked })} />
+        Hide the whole site from search engines (use this until you launch)
+      </label>
+    </Card>
+  );
+}
+
+export function AnalyticsCard({ initial }: { initial: SiteSettings["analytics"] }) {
+  const [v, setV] = useState(initial);
+  return (
+    <Card
+      title="Analytics"
+      hint="Vercel Analytics uses no cookies. Google Analytics shows a consent banner."
+      settingKey="analytics"
+      data={v}
+    >
+      <label className="flex items-center gap-2 text-sm">
+        <input type="checkbox" className="size-4 accent-[var(--primary)]" checked={v.vercel} onChange={(e) => setV({ ...v, vercel: e.target.checked })} />
+        Vercel Web Analytics
+      </label>
+      <Field label="Google Analytics 4 measurement ID (optional)">
+        <input className={input} placeholder="G-XXXXXXXXXX" value={v.gaId} onChange={(e) => setV({ ...v, gaId: e.target.value })} />
+      </Field>
+    </Card>
+  );
+}
+
+export function LegalCard({ initial }: { initial: SiteSettings["legal"] }) {
+  const [v, setV] = useState(initial);
+  return (
+    <Card
+      title="Privacy policy and terms"
+      hint="Use ## for headings and - for bullet points. {{name}} and {{email}} fill in automatically. Have a professional review these texts."
+      settingKey="legal"
+      data={v}
+    >
+      <Field label="Privacy policy (/privacy)">
+        <textarea rows={14} className={input} value={v.privacy} onChange={(e) => setV({ ...v, privacy: e.target.value })} />
+      </Field>
+      <Field label="Terms (/terms)">
+        <textarea rows={14} className={input} value={v.terms} onChange={(e) => setV({ ...v, terms: e.target.value })} />
+      </Field>
     </Card>
   );
 }

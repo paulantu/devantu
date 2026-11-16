@@ -5,9 +5,12 @@ import { revalidatePath } from "next/cache";
 import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@/db";
-import { user } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { requireRole } from "@/lib/session";
+import { twoFactor, user } from "@/db/schema";
+
+
+
 
 export type ActionState = { ok: boolean; message: string };
 
@@ -112,4 +115,17 @@ export async function removeUserAction(userId: string): Promise<ActionState> {
   }
   revalidatePath("/admin/users");
   return { ok: true, message: "User deleted" };
+}
+
+
+
+
+export async function resetTwoFactorAction(userId: string): Promise<ActionState> {
+  await requireRole(["superadmin"]);
+  const blocked = await guardTarget(userId);
+  if (blocked) return blocked;
+  await db.delete(twoFactor).where(eq(twoFactor.userId, userId));
+  await db.update(user).set({ twoFactorEnabled: false }).where(eq(user.id, userId));
+  revalidatePath("/admin/users");
+  return { ok: true, message: "Two-factor reset. They will set it up again at next login." };
 }
