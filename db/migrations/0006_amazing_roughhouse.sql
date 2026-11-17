@@ -1,0 +1,20 @@
+CREATE TABLE "services" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"slug" text NOT NULL,
+	"title" text NOT NULL,
+	"status" text DEFAULT 'draft' NOT NULL,
+	"icon" text DEFAULT 'code' NOT NULL,
+	"summary" text DEFAULT '' NOT NULL,
+	"cover_url" text DEFAULT '' NOT NULL,
+	"description" text DEFAULT '' NOT NULL,
+	"features" jsonb DEFAULT '[]'::jsonb NOT NULL,
+	"process" jsonb DEFAULT '[]'::jsonb NOT NULL,
+	"tools" jsonb DEFAULT '[]'::jsonb NOT NULL,
+	"faqs" jsonb DEFAULT '[]'::jsonb NOT NULL,
+	"seo_title" text DEFAULT '' NOT NULL,
+	"seo_description" text DEFAULT '' NOT NULL,
+	"sort_order" integer DEFAULT 0 NOT NULL,
+	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
+	"updated_at" timestamp with time zone DEFAULT now() NOT NULL,
+	CONSTRAINT "services_slug_unique" UNIQUE("slug")
+);
